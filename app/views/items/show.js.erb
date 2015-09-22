@@ -1,0 +1,4 @@
+$('#name<%= @item.id %>').html('<%= @item.name %>');
+$('#price<%= @item.id %>').html('<%= @item.price %>');
+$('#description<%= @item.id %>').html('<%= @item.description %>');
+$('#edit<%= @item.id %>').html('<%= j(render(partial:"ajax_link", locals:{item:@item})) %>');

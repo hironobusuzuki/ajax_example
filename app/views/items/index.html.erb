@@ -20,9 +20,22 @@
         <td id="description<%= item.id %>"><%= item.description %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <%# =begin %>
+        <%#= <1> js.erbを使用するver. %>
+        <%#= <1>-1. jqueryで書き換えるelementのidを設定する %>
+        <%# =end %>
         <td>
           <div id="edit<%= item.id %>">
             <%= render(partial:"ajax_link", locals:{item:item}) %>
+          </div>
+        </td>
+        <%# =begin %>
+        <%#= <2> js.erbを使用しないver. %>
+        <%#= <2>1. jqueryで書き換えるelementのidを設定する %>
+        <%# =end %>
+        <td>
+          <div id="edit2_<%= item.id %>">
+            <%= render(partial:"link", locals:{item:item}) %>
           </div>
         </td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

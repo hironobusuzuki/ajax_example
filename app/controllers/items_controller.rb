@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :edit2, :update2]
 
   # GET /items
   # GET /items.json
@@ -19,6 +19,21 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    #=begin
+    # <1>-3. 非同期(remote=true)リクエストがcontrollerのactionに飛ぶ
+    # railsがリクエストの種類に応じてactionのviewをrenderする(edit.js.erb)
+    #=end
+  end
+
+  # GET /items/1/edit2
+  def edit2
+    #=begin
+    # <2>-3. 非同期(remote=true)リクエストがcontrollerのactionに飛ぶ
+    # 自前でリクエストを判別（XMLHttpRequestか)を判別しactionのviewをrenderする(_form.erb)
+    #=end
+    if request.xhr?
+      render :partial => "form2", :locals => { remote:true }
+    end
   end
 
   # POST /items
@@ -47,6 +62,15 @@ class ItemsController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /items/1/update2
+  def update2
+    if @item.update(item_params)
+      if request.xhr?
+        render :json => @item
       end
     end
   end

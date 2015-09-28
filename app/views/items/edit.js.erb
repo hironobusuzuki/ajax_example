@@ -1,1 +1,2 @@
+<%# <1>-4. jsがレスポンスとして返り、クライアントでjs(jquery)が実行されidの内容が描画される %>
 $('#edit<%= @item.id %>').html('<%= j(render(partial: "form", locals:{remote:true})) %>');

@@ -1,1 +1,2 @@
-<%= link_to 'Ajax Edit', edit_item_path(item), remote:true %>
+<%# <1>-2. linkをremote:trueとして非同期にリクエストを送信する %>
+<%= link_to 'Ajax Edit(use js.erb)', edit_item_path(item), remote:true %>
